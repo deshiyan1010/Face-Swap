@@ -94,12 +94,12 @@ def crop(img,points):
 
 
 
-def deepfake(source_path):
+def deepfake(img_source_path,vid_source_path):
 
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
-    frame = cv2.imread(source_path,-1)
+    frame = cv2.imread(img_source_path,-1)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = detector(gray)
 
@@ -144,8 +144,7 @@ def deepfake(source_path):
 
 
 
-
-    cap = cv2.VideoCapture("img_vid/putin.mp4")
+    cap = cv2.VideoCapture(vid_source_path)
     counter = 0
     _,frame2 = cap.read()
     h,w,_ = frame2.shape
@@ -236,4 +235,4 @@ def deepfake(source_path):
 
 
 if __name__=="__main__":
-    deepfake("img_vid/trump.jpg")
+    deepfake("img_vid/trump.jpg","img_vid/putin.mp4")
